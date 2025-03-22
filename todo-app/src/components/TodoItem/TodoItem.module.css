@@ -1,0 +1,16 @@
+.todo__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30px;
+  gap: 35px;
+  overflow: hidden;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+.taskText {
+  max-width: 80%;
+  overflow: hidden;
+}

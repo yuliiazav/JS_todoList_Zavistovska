@@ -1,0 +1,97 @@
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
+  background-color: #f7f3ea;
+  border-radius: 36px;
+  border: 1px solid #5b9a88;
+  padding: 50px 40px;
+  min-height: 700px;
+}
+
+.header__logoBox {
+  width: 270px;
+  height: 70px;
+}
+
+.logo__img {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  padding: 40px 0;
+}
+.inputBox {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+.input__addTask {
+  border-radius: 20px;
+  width: 75%;
+  padding: 20px 50px;
+  color: gray;
+  border: 1px solid #f7f3ea;
+  font-size: 24px;
+}
+
+.input__addTask:focus {
+  border: 1px solid #5b9a88;
+  box-shadow: 0 0 5px #6dac9a;
+  outline: none;
+}
+
+.input__addTask::placeholder {
+  font-size: 20px;
+  line-height: 140%;
+  color: #a9a9a9;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+.button__addTask {
+  background-color: #8de0c8;
+  width: 10%;
+  border-radius: 20px;
+  font-size: 50px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  border-color: transparent;
+}
+.filterBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #9d9d9d;
+  padding: 18px 0;
+}
+
+.tasksList__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 100px 45px;
+}
+.tasksList__emptyText {
+  font-weight: 700;
+  font-size: 24px;
+  color: #808080;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+
+.tasksList__emptyText span {
+  font-size: 18px;
+  color: #aba9a5;
+  font-style: italic;
+}
+.tasksList__emptyIcon {
+  margin-bottom: 20px;
+}
