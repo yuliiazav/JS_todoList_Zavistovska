@@ -4,17 +4,16 @@ import classNames from "classnames";
 const TodoItem = ({ item, onDelete, onToggle }) => {
   return (
     <li className={styles.todo__item}>
-      <input
-        type="checkbox"
-        checked={item.completed}
-        onChange={() => onToggle(item.id)}
-      />
-      <p
-        className={classNames(
-          { [styles.completed]: item.completed },
-          styles.taskText
-        )}
-      >
+      <label className={styles.checkboxContainer}>
+        <input
+          type="checkbox"
+          checked={item.completed}
+          onChange={() => onToggle(item.id)}
+          className={styles.checkboxInput}
+        />
+        <span className={styles.checkmark}></span>
+      </label>
+      <p className={classNames({ [styles.completed]: item.completed })}>
         {item.text}
       </p>
       <button
