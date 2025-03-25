@@ -1,0 +1,34 @@
+button {
+  border-radius: 8px;
+  border: 1px solid #ffe4c47a;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  padding: 15px 20px;
+  font-size: 17px;
+  font-family: inherit;
+  border: 1px solid #9d9d9d;
+  color: #808080;
+  text-transform: capitalize;
+}
+
+button:hover {
+  border-color: #6dac9a;
+  color: rgba(52, 49, 49, 0.363);
+}
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+.button__filter {
+  background: #ddd;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button__filter.active {
+  background: #007bff;
+  color: white;
+}

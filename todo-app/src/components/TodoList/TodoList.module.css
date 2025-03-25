@@ -5,7 +5,7 @@
   border-radius: 36px;
   border: 1px solid #5b9a88;
   padding: 50px 40px;
-  min-height: 650px;
+  min-height: 550px;
 }
 
 .header__logoBox {
@@ -54,16 +54,6 @@
   letter-spacing: 2px;
 }
 
-.button__addTask {
-  background-color: #8de0c8;
-  width: 10%;
-  border-radius: 20px;
-  font-size: 50px;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  border-color: transparent;
-}
 .filterBtn {
   display: flex;
   align-items: center;
@@ -71,13 +61,16 @@
   border-bottom: 2px solid #9d9d9d;
   padding: 18px 0;
 }
-
+.tasksList {
+  min-height: 200px;
+}
 .tasksList__empty {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 100px 45px;
+  padding: 70px 45px;
+  min-height: 150px;
 }
 .tasksList__emptyText {
   font-weight: 700;
@@ -94,4 +87,27 @@
 }
 .tasksList__emptyIcon {
   margin-bottom: 20px;
+}
+.tasksList__completedEmptyText {
+  text-align: center;
+  margin: 10%;
+  font-weight: 700;
+  font-size: 24px;
+  color: #808080;
+  font-family: "Roboto", sans-serif;
+}
+.button__filter.active {
+  background: #8de0c8;
+  color: #222120;
+  font-weight: 700;
+}
+.button__addTask {
+  background-color: #8de0c8;
+  width: 10%;
+  border-radius: 20px;
+  font-size: 50px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  border-color: transparent;
 }

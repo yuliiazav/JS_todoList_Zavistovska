@@ -5,47 +5,22 @@ import TodoItem from "../TodoItem/TodoItem";
 import Logo from "../../assets/images/LogoTodoList.svg";
 import TasksEmptyIcon from "../../assets/images/TasksEmptyIcon.svg";
 import classNames from "classnames";
+import Button from "../Button/Button";
+import { useTodoContext } from "../../context/TodoContext";
 
 function TodoList() {
-  const [tasks, setTasks] = useState(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    return storedTasks ? JSON.parse(storedTasks) : [];
-  });
-
-  const [newTask, setNewTask] = useState("");
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  const handleInputChange = (event) => {
-    setNewTask(event.target.value);
-  };
-
-  const handleAddTask = () => {
-    if (newTask.trim()) {
-      setTasks([...tasks, { id: uuidv4(), text: newTask, completed: false }]);
-      setNewTask("");
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      handleAddTask();
-    }
-  };
-
-  const handleToggleTaskStatus = (id) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === id ? { ...task, completed: !task.completed } : task
-    );
-    setTasks(updatedTasks);
-  };
-
-  const handleDeleteTask = (id) => {
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    setTasks(updatedTasks);
-  };
+  const {
+    tasks,
+    newTask,
+    handleInputChange,
+    handleAddTask,
+    handleKeyDown,
+    handleToggleTaskStatus,
+    handleDeleteTask,
+    filteredTasks,
+    filter,
+    setFilter,
+  } = useTodoContext();
 
   return (
     <div className={styles.wrapper}>
@@ -66,33 +41,54 @@ function TodoList() {
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
           />
-          <button onClick={handleAddTask} className={styles.button__addTask}>
+          <Button onClick={handleAddTask} className={styles.button__addTask}>
             +
-          </button>
+          </Button>
         </div>
       </div>
       <div className={styles.main}>
         <div className={styles.filterBtn}>
-          <button className={styles.button__filter}>All tasks</button>
-          <button className={styles.button__filter}>Completed tasks</button>
+          <Button
+            className={classNames(styles.button__filter, {
+              [styles.active]: filter === "all",
+            })}
+            onClick={() => setFilter("all")}
+          >
+            All tasks
+          </Button>
+          <Button
+            className={classNames(styles.button__filter, {
+              [styles.active]: filter === "completed",
+            })}
+            onClick={() => setFilter("completed")}
+          >
+            Completed tasks
+          </Button>
         </div>
 
         <div className={styles.tasksList}>
-          {tasks.length === 0 ? (
-            <div className={styles.tasksList__empty}>
-              <img
-                src={TasksEmptyIcon}
-                alt="tasksList__emptyIcon"
-                className={styles.tasksList__emptyIcon}
-              />
-              <p className={styles.tasksList__emptyText}>
-                You don't have any tasks registered <br />
-                <span>(Create tasks and organize your to-do items)</span>
+          {filteredTasks.length === 0 ? (
+            filter === "completed" ? (
+              <p className={styles.tasksList__completedEmptyText}>
+                You don't have any completed tasks yet. <br />
+                Check All Tasks!
               </p>
-            </div>
+            ) : (
+              <div className={styles.tasksList__empty}>
+                <img
+                  src={TasksEmptyIcon}
+                  alt="tasksList__emptyIcon"
+                  className={styles.tasksList__emptyIcon}
+                />
+                <p className={styles.tasksList__emptyText}>
+                  You don't have any tasks registered <br />
+                  <span>(Create tasks and organize your to-do items)</span>
+                </p>
+              </div>
+            )
           ) : (
             <ul>
-              {tasks.map((item) => (
+              {filteredTasks.map((item) => (
                 <TodoItem
                   key={item.id}
                   item={item}
